@@ -1,5 +1,5 @@
 /**
- * Title: sign-in.components.ts
+ * Title: auth-layout.components.ts
  * Author: Oksana Kustova
  * Date: 3/27/2022
  * Description: component.

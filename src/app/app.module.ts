@@ -1,3 +1,10 @@
+/**
+ * Title: app.module.ts
+ * Author: Oksana Kustova
+ * Date: 03/27/2022
+ * Description: The root module, which is responsible for the entire application.
+ */
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

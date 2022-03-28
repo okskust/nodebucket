@@ -1,3 +1,10 @@
+/**
+ * Title: app.components.ts
+ * Author: Oksana Kustova
+ * Date: 3/27/2022
+ * Description: component.
+ */
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +13,5 @@ import { Component } from '@angular/core';
   styles: [``]
 })
 export class AppComponent {
-  
+
 }

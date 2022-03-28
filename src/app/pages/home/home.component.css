@@ -1,14 +1,22 @@
+/**
+============================================
+Title: home.component.scss
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: style for component
+===========================================
+*/
+
 .main-welcome {
     margin-top: 30px;
   }
-  
+
   .title {
     text-align: center;
     font-weight: lighter;
   }
-  
+
   .subtitle {
     text-align: center;
     font-size: 14px;
   }
-  

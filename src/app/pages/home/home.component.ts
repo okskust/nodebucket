@@ -1,3 +1,10 @@
+/**
+ * Title:home.components.ts
+ * Author: Oksana Kustova
+ * Date: 3/27/2022
+ * Description: component.
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
