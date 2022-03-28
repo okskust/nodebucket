@@ -1,0 +1,21 @@
+<!--
+============================================
+Title: base-layout.component.html
+Author: Oksana Kustova
+Date: 02/13/2022
+Description: HTML template for component.
+===========================================
+-->
+
+<div fxLayout="column">
+  <mat-card fxFlex style="margin-top: 5%; width: 60%; margin-left: auto; margin-right: auto;" class="mat-elevation-z0">
+    <mat-card-title style="text-align: center;">
+      <img src="./assets/not-found.png" style="width: 60%;" />
+    </mat-card-title>
+    <br/>
+    <mat-card-content style="text-align: center; ">
+      <div> Seems you took a wrong turn somewhere.<br/>
+      Click <button mat-button  routerLink="/">HERE</button> to return back to the home screen.</div>
+    </mat-card-content>
+  </mat-card>
+</div>

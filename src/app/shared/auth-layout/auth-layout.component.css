@@ -1,0 +1,18 @@
+
+.signin-div {
+  margin: 60px auto;
+  width: 40%;
+}
+.signin-container {
+
+  text-align: center;
+}
+.title {
+padding: 10px;
+color: primary;
+
+}
+
+.msg-error {
+  color:red;
+}
