@@ -5,16 +5,16 @@
  * Description: Routing for app.
  */
 
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SignInGuard } from './sing-in.guard';
-
-
+import { SignInGuard } from './sign-in.guard';
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   {
@@ -24,10 +24,20 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+        canActivate: [SignInGuard],
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [SignInGuard],
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
       },
     ],
-    canActivate: [SignInGuard],
   },
+
   {
     path: 'session',
     component: AuthLayoutComponent,
@@ -38,7 +48,7 @@ const routes: Routes = [
       },
       {
         path: 'sign-in',
-        component: AuthLayoutComponent,
+        component: SignInComponent,
       },
     ],
   },
@@ -49,16 +59,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      enableTracing: false,
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-
-
-
-
-
-
-
-

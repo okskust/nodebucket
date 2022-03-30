@@ -26,6 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HomeComponent,
     BaseLayoutComponent,
     AuthLayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignInComponent,
+    AboutComponent
 
   ],
   imports: [
