@@ -16,7 +16,7 @@ let taskSchema = new Schema({
   header: { type: String },
   body: { type: String },
   status: { type: String },
-  dateOfCreation: { type: Date, default: Date.now },
+  dateOfCreation: { type: Date, default: Date.now() },
   dateOfDeadline: { type: Date },
   dateOfCompletion: { type: Date },
 });

@@ -13,7 +13,7 @@ import { BaseLayoutComponent } from './shared/base-layout/base-layout.component'
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SignInGuard } from './sign-in.guard';
+import { SignInGuard } from './shared/sign-in.guard';
 import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
