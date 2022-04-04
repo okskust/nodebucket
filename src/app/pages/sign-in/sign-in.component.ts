@@ -45,11 +45,15 @@ export class SignInComponent implements OnInit {
     return this.signinForm.controls;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const empId = this.signinForm.controls['empId'].value;
 
     this.http.get('/api/employees/' + empId).subscribe((res) => {
       if (res) {
+        sessionStorage.setItem(
+          'name',
+          `${res['firstName']} ${res['lastName']}`
+        );
         this.cookieService.set('session_user', empId, 1);
         this.router.navigate(['/']);
       } else {

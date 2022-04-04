@@ -81,7 +81,7 @@ mongoose.connect(conn, {
 app.get("/api/employees/:empId/tasks", async (req, res) => {
   try {
     Employee.findOne(
-      { empId: req.params.empId },
+      { empId: req.params.empId }, 'empId tasks',
       function (err, employee) {
         if (err) {
           console.log(err);

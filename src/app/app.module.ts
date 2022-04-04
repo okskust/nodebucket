@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AboutComponent } from './pages/about/about.component';
     AuthLayoutComponent,
     NotFoundComponent,
     SignInComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent
 
   ],
   imports: [
