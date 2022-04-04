@@ -1,0 +1,30 @@
+/**
+============================================
+Title: sign-in.component.scss
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: style for component
+===========================================
+*/
+.signin-div {
+  margin: 60px auto;
+  width: 40%;
+}
+.signin-container {
+
+  text-align: center;
+}
+.title {
+padding: 10px;
+color: primary;
+
+}
+
+.msg-error {
+  color:red;
+}
+
+button {
+  background-color:  rgb(67, 141, 131);
+  color: whitesmoke;
+}

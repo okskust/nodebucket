@@ -16,10 +16,16 @@ import { Router } from '@angular/router';
 })
 export class BaseLayoutComponent implements OnInit {
   year: number = Date.now();
+  isLoggedIn: boolean;
+  name: string;
 
-  constructor(private cookieService: CookieService, private router: Router)  {}
+  constructor(private cookieService: CookieService, private router: Router)  {
+    this.isLoggedIn = this.cookieService.get('session_user') ? true : false;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = sessionStorage.getItem('name');
+  }
   signOut() {
     this.cookieService.deleteAll();
     this.router.navigate(['/session/sign-in']);

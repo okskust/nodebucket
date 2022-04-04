@@ -77,6 +77,82 @@ mongoose.connect(conn, {
   }
 });
 
+//findAllTasks: /api/employees/:empId/tasks
+app.get("/api/employees/:empId/tasks", async (req, res) => {
+  try {
+    Employee.findOne(
+      { empId: req.params.empId }, 'empId tasks',
+      function (err, employee) {
+        if (err) {
+          console.log(err);
+          res.status(500).send({
+            message: `MongoDB Exception: ${err}`,
+          });
+        } else {
+          if (employee.tasks.length === 0) {
+            let response = employee.firstName + " " + employee.lastName + " doesn't have any tasks.";
+            console.log(response);
+            res.send(response);
+          } else {
+            console.log(employee.tasks);
+            res.json(employee.tasks);
+          }
+        }
+      }
+    );
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({
+      message: `Server Exception: ${e.message}`,
+    });
+  }
+});
+
+//createTask: /api/employees/:empId/tasks
+
+app.post("/api/employees/:empId/tasks", async (req, res) => {
+  try {
+    const employeeId = req.params.empId;
+
+    Employee.findOne({ empId: employeeId }, function (err, employee) {
+      if (err) {
+        console.log(err);
+        res.status(501).send({
+          message: `MongoDB Exception: ${err}`,
+        });
+      } else {
+        console.log(employee);
+
+        const newTask = {
+          header: req.body.header,
+          body: req.body.body,
+          status: "todo",
+          dateOfCreation: Date.now(),
+          dateOfDeadline: req.body.dateOfDeadline?req.body.dateOfDeadline: null,
+          dateOfCompletion: null,
+
+        };
+        employee.tasks.push(newTask);
+
+        employee.save(function (err, updatedEmployee) {
+          if (err) {
+            console.log(err);
+            res.json(updatedEmployee);
+          } else {
+            console.log(updatedEmployee);
+            res.json(updatedEmployee);
+          }
+        });
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({
+      message: `Server Exception: ${e.message}`,
+    });
+  }
+});
+
 /**
  * Create and start server
  */

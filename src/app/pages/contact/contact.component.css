@@ -1,0 +1,48 @@
+
+.about {
+  padding-top: 5em;
+  padding-left: 5em;
+
+  width: 70%;
+
+}
+
+.paragraph {
+  font-size: 2em;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.5em;
+  width: 80%;
+}
+
+.header {
+  padding-top: 4em;
+  padding-left: 6em;
+  font-size: 4em;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(60, 78, 94);
+}
+
+
+
+.underline {
+  padding-right: 2em;
+}
+
+
+
+.card-title-icon, .mat-icon {
+  font-size: 72px;
+  padding-bottom: 1em;
+}
+
+.align-center {
+
+  font-size: 2em;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+.item {
+
+  padding-bottom: 5em;
+}
+

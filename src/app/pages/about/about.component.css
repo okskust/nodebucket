@@ -1,0 +1,27 @@
+
+.about {
+  padding-top: 5em;
+}
+
+.paragraph {
+  font-size: 2em;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.5em;
+  width: 80%;
+}
+
+.header {
+  padding-top: 4em;
+  padding-left: 6em;
+  font-size: 4em;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(60, 78, 94);
+}
+
+img {
+width: 80%;
+}
+
+.underline {
+  padding-right: 2em;
+}
