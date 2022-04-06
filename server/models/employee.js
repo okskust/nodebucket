@@ -8,6 +8,7 @@
 ;===========================================
 */
 
+const any = require("bluebird/js/release/any");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -16,9 +17,9 @@ let taskSchema = new Schema({
   header: { type: String },
   body: { type: String },
   status: { type: String },
-  dateOfCreation: { type: Date, default: Date.now() },
-  dateOfDeadline: { type: Date },
-  dateOfCompletion: { type: Date },
+  dateOfCreation: { type: Date, default: new Date() },
+  dateOfDeadline: { type: String, default: null },
+  dateOfCompletion: { type: String},
 });
 
 //employee schema

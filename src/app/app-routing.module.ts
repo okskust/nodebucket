@@ -16,7 +16,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInGuard } from './shared/sign-in.guard';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
-
+import { TasksComponent } from './pages/tasks/tasks.component'
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +39,11 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent,
+      },
+      {
+        path: 'tasks',
+        component: TasksComponent,
+        canActivate: [SignInGuard],
       },
     ],
   },

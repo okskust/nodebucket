@@ -12,22 +12,20 @@ export class TaskService {
     return this.http.get('/api/employees/' + empId + '/tasks');
   }
 
-  createTasks(
+  createTask(
     empId: number,
     header: string,
     body: string,
-    status: string,
-    dateOfCreation: Date,
-    dateOfDeadline: Date,
-    dateOfCompletion: Date
+    dateOfDeadline: string,
+
   ): Observable<any> {
     return this.http.post('/api/employees/' + empId + '/tasks', {
       header: header,
       body: body,
-      status: status,
-      dateOfCreation: dateOfCreation,
+      status: 'todo',
+      dateOfCreation: new Date(),
       dateOfDeadline: dateOfDeadline,
-      dateOfCompletion: dateOfCompletion,
+      dateOfCompletion: null,
     });
   }
 }

@@ -1,0 +1,67 @@
+/**
+============================================
+Title: home.component.scss
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: style for component
+===========================================
+*/
+
+mat-card-title {
+  color: rgb(60, 78, 94);
+  text-align: center;
+}
+
+.create-button,
+.main-header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  background-color:  rgb(67, 141, 131);
+  color: whitesmoke;
+}
+.cards {
+  margin: 50px auto;
+  width: 70%;
+}
+
+.item-card {
+  font-size: 16px;
+  border: 2px solid rgb(53, 96, 133);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.all-description {
+  width: 80%;
+  padding-right: 2em;
+  line-height: 3em;
+}
+
+.description {
+  list-style-type: square;
+  font-size: 2em;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  margin-bottom: 2em;
+}
+
+.about {
+  padding-top: 5em;
+}
+
+.header {
+  padding-top: 4em;
+  padding-left: 2em;
+  font-size: 4em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: rgb(60, 78, 94);
+}

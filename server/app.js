@@ -125,9 +125,9 @@ app.post("/api/employees/:empId/tasks", async (req, res) => {
 
         const newTask = {
           header: req.body.header,
-          body: req.body.body,
+          body: req.body.body?req.body.body: "",
           status: "todo",
-          dateOfCreation: Date.now(),
+          dateOfCreation: new Date(),
           dateOfDeadline: req.body.dateOfDeadline?req.body.dateOfDeadline: null,
           dateOfCompletion: null,
 
