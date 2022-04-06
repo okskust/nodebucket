@@ -1,5 +1,5 @@
 export interface SessionUser {
-  empId: string;
+  empId: number;
   firstName: string;
   lastName: string;
 }

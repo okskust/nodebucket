@@ -4,6 +4,6 @@ export interface Task {
   body: string;
   status: string;
   dateOfCreation: Date;
-  dateOfDeadline: Date;
-  dateOfCompletion: Date;
+  dateOfDeadline: string;
+  dateOfCompletion: string;
 }
