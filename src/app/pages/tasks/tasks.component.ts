@@ -12,6 +12,11 @@ import { TaskService } from 'src/app/shared/services/task.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from 'src/app/shared/create-task-dialog/create-task-dialog.component';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-tasks',
@@ -23,6 +28,7 @@ export class TasksComponent implements OnInit {
   tasks: Task[];
   empId: number;
   name: string;
+  taskId: string;
 
   constructor(
     private taskService: TaskService,
@@ -30,11 +36,11 @@ export class TasksComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
-    console.log("inside constructor"+this.empId);
+    console.log('inside constructor' + this.empId);
     this.taskService.findAllTasks(this.empId).subscribe(
       (res) => {
         this.tasks = res;
-          console.log("inside constructor employee.tasks "+this.tasks);
+        console.log('inside constructor employee.tasks ' + this.tasks);
       },
       (err) => {
         console.log(err);
@@ -48,19 +54,103 @@ export class TasksComponent implements OnInit {
 
   openCreateTaskDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      disableClose: true
-    })
+      disableClose: true,
+    });
 
-    dialogRef.afterClosed().subscribe(data => {
-      if(data) {
-        this.taskService.createTask(this.empId, data.header, data.body, data.dateOfDeadline).subscribe(res => {
-          this.employee = res;
-        }, err => {
-          console.log(err);
-        }, () => {
-          this.tasks = this.employee.tasks;
-        })
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        this.taskService
+          .createTask(this.empId, data.header, data.body, data.dateOfDeadline)
+          .subscribe(
+            (res) => {
+              this.employee = res;
+            },
+            (err) => {
+              console.log(err);
+            },
+            () => {
+              this.tasks = this.employee.tasks;
+            }
+          );
       }
-    })
+    });
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    const taskId = this.tasks[event.previousIndex]._id;
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      console.log(event.container);
+      this.reorderTaskList(this.empId, this.tasks);
+      //this.updateTaskList(this.empId, this.tasks, taskId);
+    } else {
+
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      console.log(event.previousIndex);
+      console.log(event.currentIndex);
+      //console.log(this.tasks[event.currentIndex]);
+
+      this.updateTaskList(this.empId, this.tasks, taskId);
+      //this.reorderTaskList(this.empId, this.tasks);
+    }
+  }
+  updateTaskList(empId: number, tasks: Task[], taskId: string): void {
+    this.taskService.updateTask(empId, tasks, taskId).subscribe(
+      (res) => {
+        this.employee = res;
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.tasks = this.employee.tasks;
+      }
+    );
+  }
+
+  reorderTaskList(empId: number, tasks: Task[]): void {
+    this.taskService.reorderTask(empId, tasks).subscribe(
+      (res) => {
+        this.employee = res;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.tasks = this.employee.tasks;
+      }
+    );
+  }
+
+  deleteTask(taskId: string) {
+    if (confirm('Are you sure you want to delete this task?')) {
+      if (taskId) {
+        console.log(taskId + ' was deleted');
+
+        this.taskService.deleteTask(this.empId, taskId).subscribe(
+          (res) => {
+            this.employee = res;
+            console.log(res);
+          },
+          (err) => {
+            console.log(err);
+          },
+          () => {
+            console.log(this.employee.tasks);
+            this.tasks = this.employee.tasks;
+          }
+        );
+      }
+    }
   }
 }
