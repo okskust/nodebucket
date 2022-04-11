@@ -33,6 +33,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-ta
     AboutComponent,
     ContactComponent,
     TasksComponent,
-    CreateTaskDialogComponent
+    CreateTaskDialogComponent,
+
 
   ],
   imports: [
@@ -64,7 +66,8 @@ import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-ta
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],
