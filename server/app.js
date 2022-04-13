@@ -167,7 +167,7 @@ app.post("/api/employees/:empId/tasks", async (req, res) => {
 app.put("/api/employees/:empId/tasks/:taskId", async (req, res) => {
   try {
     const employeeId = req.params.empId;
-    const taskIndex = req.params.taskId;
+    const taskId = req.params.taskId;
 
     Employee.findOne({ empId: employeeId }, function (err, employee) {
       if (err) {
@@ -185,7 +185,7 @@ app.put("/api/employees/:empId/tasks/:taskId", async (req, res) => {
           console.log(employee);
 
           const taskItem = employee.tasks.find(
-            (item) => item._id.toString() === taskIndex
+            (item) => item._id.toString() === taskId
           );
           if (!taskItem) {
             console.log(err);
