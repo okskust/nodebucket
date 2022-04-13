@@ -1,5 +1,5 @@
 /**
- * Title:home.components.ts
+ * Title:tasks.components.ts
  * Author: Oksana Kustova
  * Date: 3/27/2022
  * Description: component.
@@ -29,6 +29,8 @@ export class TasksComponent implements OnInit {
   empId: number;
   name: string;
   taskId: string;
+  todo: Task[];
+  done: Task[];
 
   constructor(
     private taskService: TaskService,
@@ -40,10 +42,15 @@ export class TasksComponent implements OnInit {
     this.taskService.findAllTasks(this.empId).subscribe(
       (res) => {
         this.tasks = res;
+        console.log(res);
         console.log('inside constructor employee.tasks ' + this.tasks);
       },
       (err) => {
         console.log(err);
+      },
+      () => {
+        this.todo = this.tasks.filter((item) => item.status === 'todo');
+        this.done = this.tasks.filter((item) => item.status === 'done');
       }
     );
   }
@@ -63,13 +70,20 @@ export class TasksComponent implements OnInit {
           .createTask(this.empId, data.header, data.body, data.dateOfDeadline)
           .subscribe(
             (res) => {
+              console.log('inside createTask component ' + res);
               this.employee = res;
             },
             (err) => {
               console.log(err);
             },
             () => {
-              this.tasks = this.employee.tasks;
+              //this.tasks = this.employee.tasks;
+              this.todo = this.employee.tasks.filter(
+                (item) => item.status === 'todo'
+              );
+              this.done = this.employee.tasks.filter(
+                (item) => item.status === 'done'
+              );
             }
           );
       }
@@ -77,48 +91,43 @@ export class TasksComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>) {
-    const taskId = this.tasks[event.previousIndex]._id;
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      console.log(event.container);
-      this.reorderTaskList(this.empId, this.tasks);
-      //this.updateTaskList(this.empId, this.tasks, taskId);
+      console.log('inside drop' + this.tasks);
+      this.moveTaskList(this.empId, this.todo, this.done);
     } else {
-
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+      console.log(event.previousContainer);
       console.log(event.previousIndex);
       console.log(event.currentIndex);
       //console.log(this.tasks[event.currentIndex]);
 
-      this.updateTaskList(this.empId, this.tasks, taskId);
+      if (event.container.data[event.currentIndex].status === 'todo') {
+        this.done[event.currentIndex].status = 'done';
+        this.done[event.currentIndex].dateOfCompletion = new Date();
+      } else {
+        this.todo[event.currentIndex].status = 'todo';
+        this.todo[event.currentIndex].dateOfCompletion = null;
+      }
+
+
+      //const taskId = event.container.data[event.currentIndex]._id;
+
+      this.moveTaskList(this.empId, this.todo, this.done);
       //this.reorderTaskList(this.empId, this.tasks);
     }
   }
-  updateTaskList(empId: number, tasks: Task[], taskId: string): void {
-    this.taskService.updateTask(empId, tasks, taskId).subscribe(
-      (res) => {
-        this.employee = res;
-      },
-      (err) => {
-        console.log(err);
-      },
-      () => {
-        this.tasks = this.employee.tasks;
-      }
-    );
-  }
-
-  reorderTaskList(empId: number, tasks: Task[]): void {
-    this.taskService.reorderTask(empId, tasks).subscribe(
+  moveTaskList(empId: number, todo: Task[], done: Task[]): void {
+    this.taskService.moveTask(empId, todo, done).subscribe(
       (res) => {
         this.employee = res;
         console.log(res);
@@ -127,7 +136,39 @@ export class TasksComponent implements OnInit {
         console.log(err);
       },
       () => {
-        this.tasks = this.employee.tasks;
+        console.log(this.employee);
+        //this.tasks = this.employee.tasks;
+        this.todo = this.employee.tasks.filter(
+          (item) => item.status === 'todo'
+        );
+        this.done = this.employee.tasks.filter(
+          (item) => item.status === 'done'
+        );
+      }
+    );
+  }
+
+  updateTaskList(
+    empId: number,
+    todo: Task[],
+    done: Task[],
+    taskId: string
+  ): void {
+    this.taskService.updateTask(empId, todo, done, taskId).subscribe(
+      (res) => {
+        this.employee = res;
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        //this.tasks = this.employee.tasks;
+        this.todo = this.employee.tasks.filter(
+          (item) => item.status === 'todo'
+        );
+        this.done = this.employee.tasks.filter(
+          (item) => item.status === 'done'
+        );
       }
     );
   }
@@ -147,7 +188,13 @@ export class TasksComponent implements OnInit {
           },
           () => {
             console.log(this.employee.tasks);
-            this.tasks = this.employee.tasks;
+            //this.tasks = this.employee.tasks;
+            this.todo = this.employee.tasks.filter(
+              (item) => item.status === 'todo'
+            );
+            this.done = this.employee.tasks.filter(
+              (item) => item.status === 'done'
+            );
           }
         );
       }

@@ -32,12 +32,12 @@ Description: HTML template for component.
               class="tasks-list"
               cdkDropList
               #todoList="cdkDropList"
-              [cdkDropListData]="tasks"
+              [cdkDropListData]="todo"
               [cdkDropListConnectedTo]="[doneList]"
               (cdkDropListDropped)="drop($event)"
             >
-              <div *ngFor="let item of tasks" cdkDrag>
-                <div *ngIf="item.status === 'todo'">
+              <div *ngFor="let item of todo" cdkDrag>
+
                   <mat-card class="mat-elevation-z0">
                     <mat-card-content class="item-card">
                       <div fxLayout="column">
@@ -71,7 +71,7 @@ Description: HTML template for component.
                       </div>
                     </mat-card-content>
                   </mat-card>
-                </div>
+
               </div>
             </div>
           </mat-card-content>
@@ -88,12 +88,12 @@ Description: HTML template for component.
                   class="tasks-list"
                   cdkDropList
                   #doneList="cdkDropList"
-                  [cdkDropListData]="tasks"
+                  [cdkDropListData]="done"
                   [cdkDropListConnectedTo]="[todoList]"
                   (cdkDropListDropped)="drop($event)"
                 >
-                  <div *ngFor="let item of tasks" cdkDrag>
-                    <div *ngIf="item.status === 'done'">
+                  <div *ngFor="let item of done" cdkDrag>
+
                       <mat-card class="mat-elevation-z0">
                         <mat-card-content class="item-card">
                           <div fxLayout="column">
@@ -127,7 +127,7 @@ Description: HTML template for component.
                         </mat-card-content>
                       </mat-card>
                     </div>
-                  </div>
+
                 </div>
               </mat-card-content>
             </mat-card>
