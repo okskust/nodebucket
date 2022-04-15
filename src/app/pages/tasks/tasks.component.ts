@@ -119,7 +119,6 @@ export class TasksComponent implements OnInit {
         this.todo[event.currentIndex].dateOfCompletion = null;
       }
 
-
       //const taskId = event.container.data[event.currentIndex]._id;
 
       this.moveTaskList(this.empId, this.todo, this.done);

@@ -16,9 +16,12 @@ Description: HTML template for component.
           <button class="logo" routerLink="/" mat-button>nodebucket</button>
         </div>
         <div style="width: 80%">
+          <div fxFlex></div>
           <div fxLayout="row wrap" fxLayoutAlign="end start">
-            <button class="navbar-link" routerLink="/" mat-button>Home</button>
+
+            <h1>{{isLoggedIn}}</h1>
             <div *ngIf="isLoggedIn">
+
               <button class="navbar-link" routerLink="/tasks" mat-button>
                 Tasks
               </button>
@@ -30,18 +33,22 @@ Description: HTML template for component.
               Contact
             </button>
 
-            <div fxFlex></div>
-            <div *ngIf="isLoggedIn">
+            <div *ngIf="isLoggedIn" class="navbar-link">
               <p>Hello, {{ name }}!</p>
-
             </div>
             <div *ngIf="isLoggedIn">
-              <button
-                class="navbar-link"
-                mat-button
-                (click)="signOut()"
-              ><mat-icon>logout</mat-icon></button>
+              <button class="navbar-link" mat-button (click)="signOut()">
+                <mat-icon>logout</mat-icon>
+              </button>
             </div>
+
+            <div *ngIf="!isLoggedIn">
+              <button class="navbar-link" routerLink="/session/sign-in" mat-button>
+                Log In
+              </button>
+            </div>
+
+
           </div>
         </div>
       </mat-toolbar-row>
