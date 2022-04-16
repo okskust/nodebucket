@@ -5,11 +5,12 @@
  * Description: component.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
+import { SignInService } from 'src/app/shared/services/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,14 +20,20 @@ import { HttpClient } from '@angular/common/http';
 export class SignInComponent implements OnInit {
   signinForm!: FormGroup;
   errorMessage!: string;
+  isLoggedIn: boolean;
+
+  //@Output() statusChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private router: Router,
     private cookieService: CookieService,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private readonly signInService: SignInService
   ) {
     console.log(this.cookieService.get('session_user'));
+    if(!this.cookieService.get('session_user')) this.isLoggedIn = false;
+
   }
 
   ngOnInit(): void {
@@ -55,10 +62,18 @@ export class SignInComponent implements OnInit {
           `${res['firstName']} ${res['lastName']}`
         );
         this.cookieService.set('session_user', empId, 1);
-        this.router.navigate(['/']);
+        this.router.navigate(['/tasks']);
+        //this.statusChange.emit(this.flag=true);
+        this.isLoggedIn = true;
+        this.signInService.changeStatus(this.isLoggedIn);
+        this.signInService.changeName(sessionStorage.getItem('name'));
+
       } else {
         this.errorMessage = `The employee ID you entered is invalid, please try again.`;
       }
     });
   }
+
+
+
 }

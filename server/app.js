@@ -32,7 +32,7 @@ app.use("/", express.static(path.join(__dirname, "../dist/nodebucket")));
 /**
  * Variables
  */
-const port = 3000; // server port
+const port = process.env.PORT || 3000; // server port
 
 //database connection string
 const conn =
@@ -142,6 +142,7 @@ app.post("/api/employees/:empId/tasks", async (req, res) => {
           dateOfCompletion: null,
         };
         employee.tasks.push(newTask);
+        console.log(employee.tasks);
 
         employee.save(function (err, updatedEmployee) {
           if (err) {
@@ -162,73 +163,11 @@ app.post("/api/employees/:empId/tasks", async (req, res) => {
   }
 });
 
-//updateTask: /api/employees/:empId/tasks/:taskId.
-
-app.put("/api/employees/:empId/tasks/:taskId", async (req, res) => {
-  try {
-    const employeeId = req.params.empId;
-    const taskIndex = req.params.taskId;
-
-    Employee.findOne({ empId: employeeId }, function (err, employee) {
-      if (err) {
-        console.log(err);
-        res.status(501).send({
-          message: `MongoDB Exception: ${err}`,
-        });
-      } else {
-        if (!employee) {
-          console.log(err);
-          res.status(401).send({
-            message: `Invalid employeeId: ${err}`,
-          });
-        } else {
-          console.log(employee);
-
-          const taskItem = employee.tasks.find(
-            (item) => item._id.toString() === taskIndex
-          );
-          if (!taskItem) {
-            console.log(err);
-            res.status(401).send({
-              message: `Invalid taskId: ${err}`,
-            });
-          } else {
-            employee.tasks.id(taskItem._id).status =
-              employee.tasks.id(taskItem._id).status === "todo"
-                ? "done"
-                : "todo";
-            employee.tasks.id(taskItem._id).dateOfCompletion =
-              !employee.tasks.id(taskItem._id).dateOfCompletion
-                ? new Date()
-                : null;
-
-            employee.save(function (err, updatedEmployee) {
-              if (err) {
-                console.log(err);
-                res.status(500).send({
-                  message: `MongoDB Exception: ${err}`,
-                });
-              } else {
-                console.log(updatedEmployee);
-                res.json(updatedEmployee);
-              }
-            });
-          }
-        }
-      }
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(500).send({
-      message: `Server Exception: ${e.message}`,
-    });
-  }
-});
-
-//reorderTask: /api/employees/:empId/tasks.
+//moveTask: /api/employees/:empId/tasks.
 
 app.put("/api/employees/:empId/tasks", async (req, res) => {
   try {
+    console.log("start moveTask");
     Employee.findOne({ empId: req.params.empId }, function (err, employee) {
       if (err) {
         console.log(err);
@@ -243,7 +182,8 @@ app.put("/api/employees/:empId/tasks", async (req, res) => {
           });
         } else {
           console.log("THERE " + employee);
-          console.log("THERE " + req.body.tasks);
+          console.log("THERE " + req);
+          console.log("THERE " + req.toString());
           employee.set({
             tasks: req.body.tasks,
           });
@@ -269,12 +209,14 @@ app.put("/api/employees/:empId/tasks", async (req, res) => {
   }
 });
 
+
+
 //deleteTask: /api/employees/:empId/tasks/:taskId.
 
 app.delete("/api/employees/:empId/tasks/:taskId", async (req, res) => {
   try {
     const employeeId = req.params.empId;
-    const taskIndex = req.params.taskId;
+    const taskId = req.params.taskId;
 
     Employee.findOne({ empId: employeeId }, function (err, employee) {
       if (err) {
@@ -292,7 +234,7 @@ app.delete("/api/employees/:empId/tasks/:taskId", async (req, res) => {
           console.log(employee);
 
           const taskItem = employee.tasks.find(
-            (item) => item._id.toString() === taskIndex
+            (item) => item._id.toString() === taskId
           );
           if (!taskItem) {
             console.log(err);

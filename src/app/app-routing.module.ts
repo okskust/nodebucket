@@ -16,7 +16,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInGuard } from './shared/sign-in.guard';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { TasksComponent } from './pages/tasks/tasks.component'
+import { TasksComponent } from './pages/tasks/tasks.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,13 +25,8 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        canActivate: [SignInGuard],
       },
-      {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [SignInGuard],
-      },
+
       {
         path: 'about',
         component: AboutComponent,
@@ -45,26 +40,26 @@ const routes: Routes = [
         component: TasksComponent,
         canActivate: [SignInGuard],
       },
-    ],
-  },
+      {
+        path: 'session',
+        component: AuthLayoutComponent,
+        children: [
+          {
+            path: 'not-found',
+            component: NotFoundComponent,
+          },
+          {
+            path: 'sign-in',
+            component: SignInComponent,
 
-  {
-    path: 'session',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: 'not-found',
-        component: NotFoundComponent,
+          },
+        ],
       },
       {
-        path: 'sign-in',
-        component: SignInComponent,
+        path: '**',
+        redirectTo: 'session/not-found',
       },
     ],
-  },
-  {
-    path: '**',
-    redirectTo: 'session/not-found',
   },
 ];
 

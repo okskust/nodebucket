@@ -33,6 +33,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import { SignInService } from 'src/app/shared/services/sign-in.service';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -47,6 +48,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ContactComponent,
     TasksComponent,
     CreateTaskDialogComponent,
+
 
 
   ],
@@ -67,9 +69,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+
   ],
-  providers: [],
+  providers: [SignInService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

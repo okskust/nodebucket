@@ -1,4 +1,11 @@
-
+/**
+============================================
+Title: about.component.scss
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: style for component
+===========================================
+*/
 .about {
   padding-top: 5em;
 }
@@ -19,7 +26,10 @@
 }
 
 img {
-width: 80%;
+width: 820px;
+margin: auto;
+padding-top: 5em;
+
 }
 
 .underline {
