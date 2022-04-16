@@ -62,7 +62,7 @@ export class SignInComponent implements OnInit {
           `${res['firstName']} ${res['lastName']}`
         );
         this.cookieService.set('session_user', empId, 1);
-        this.router.navigate(['/']);
+        this.router.navigate(['/tasks']);
         //this.statusChange.emit(this.flag=true);
         this.isLoggedIn = true;
         this.signInService.changeStatus(this.isLoggedIn);

@@ -1,17 +1,18 @@
+/**
+============================================
+Title: contact.component.scss
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: style for component
+===========================================
+*/
 
 .about {
   padding-top: 5em;
-  padding-left: 5em;
+  padding-left: 10em;
 
   width: 70%;
 
-}
-
-.paragraph {
-  font-size: 2em;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  line-height: 1.5em;
-  width: 80%;
 }
 
 .header {
@@ -23,26 +24,28 @@
 }
 
 
-
-.underline {
-  padding-right: 2em;
-}
-
-
-
 .card-title-icon, .mat-icon {
-  font-size: 2em;
-  padding-bottom: 1em;
+  font-size: 30px;
+  padding-bottom: 20px;
 }
 
 .align-center {
 
-  font-size: 2em;
+  font-size: 30px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
 }
 .item {
 
-  padding-bottom: 5em;
+  padding-bottom: 30px;
 }
 
+.mat-icon {
+  color: rgb(67, 141, 131);
+}
+img {
+width: 920px;
+  margin: auto;
+  padding-top: 5em;
+
+  }

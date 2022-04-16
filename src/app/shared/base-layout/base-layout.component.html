@@ -18,8 +18,6 @@ Description: HTML template for component.
         <div style="width: 80%">
           <div fxFlex></div>
           <div fxLayout="row wrap" fxLayoutAlign="end start">
-
-            <h1>{{isLoggedIn}}</h1>
             <div *ngIf="isLoggedIn">
 
               <button class="navbar-link" routerLink="/tasks" mat-button>
@@ -34,7 +32,7 @@ Description: HTML template for component.
             </button>
 
             <div *ngIf="isLoggedIn" class="navbar-link">
-              <p>Hello, {{ name }}!</p>
+              <p class="hello-user">Hello, {{ name }}!</p>
             </div>
             <div *ngIf="isLoggedIn">
               <button class="navbar-link" mat-button (click)="signOut()">

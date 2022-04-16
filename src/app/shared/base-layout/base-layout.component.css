@@ -49,3 +49,11 @@ Description: style for component
   .bu-link:hover {
     text-decoration: underline;
   }
+
+  .hello-user {
+    font-weight: lighter;
+    padding-left: 40px;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  }

@@ -1,3 +1,10 @@
+/**
+ * Title: task.service.ts
+ * Author: Oksana Kustova
+ * Date: 2/5/2022
+ * Description: Task service.
+ */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

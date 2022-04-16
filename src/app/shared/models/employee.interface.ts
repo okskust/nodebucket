@@ -1,3 +1,9 @@
+/**
+ * Title: employee.interface.ts
+ * Author: Oksana Kustova
+ * Date: 02/02/2022
+ * Description: Employee interface object
+ */
 import { Task } from './task.interface';
 
 export interface Employee {

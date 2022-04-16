@@ -1,3 +1,10 @@
+/**
+ * Title: sign-in.service.ts
+ * Author: Oksana Kustova
+ * Date: 2/5/2022
+ * Description: SignInService
+ */
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 

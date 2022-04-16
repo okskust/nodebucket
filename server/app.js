@@ -32,7 +32,7 @@ app.use("/", express.static(path.join(__dirname, "../dist/nodebucket")));
 /**
  * Variables
  */
-const port = 3000; // server port
+const port = process.env.PORT || 3000; // server port
 
 //database connection string
 const conn =
