@@ -2,46 +2,9 @@
 ============================================
 Title: auth-layout.component.html
 Author: Oksana Kustova
-Date: 3/27/2022
+Date: 02/13/2022
 Description: HTML template for component.
 ===========================================
 -->
-<div fxLayout="column" class="signin-div">
 
-  <mat-card fxFlex class="mat-elevation-z8 signin-container">
-    <mat-card-title class="title">EMPLOYEE SIGN IN</mat-card-title>
-    <mat-card-subtitle>You must enter a valid employee ID to proceed.</mat-card-subtitle>
-
-    <mat-card-content>
-      <div class="msg-error" *ngIf="errorMessage">
-        {{ errorMessage }}
-      </div>
-
-      <div *ngIf="form['empId'].errors && form['empId'].touched">
-        <div class="msg-error">
-          Employee ID must be a numeric value.
-        </div>
-      </div>
-
-
-      <mat-card class="mat-elevation-z0" fxLayout="column" fxLayoutGap="10px">
-
-        <form [formGroup]="signinForm" (ngSubmit)="onSubmit(); signinForm.reset()">
-          <mat-card-content>
-
-            <mat-form-field fxFlex appearance="fill">
-              <mat-label for="txtEmpId" id="lblEmpId">Employee ID</mat-label>
-              <input type="text" matInput formControlName="empId" id="txtEmpId" name="txtEmpId" />
-            </mat-form-field>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <button type="submit" [disabled]="!signinForm.valid" fxFlex mat-raised-button color="primary">Submit</button>
-          </mat-card-actions>
-        </form>
-      </mat-card>
-
-    </mat-card-content>
-  </mat-card>
-
-</div>
+<router-outlet></router-outlet>

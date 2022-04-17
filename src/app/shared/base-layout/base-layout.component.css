@@ -13,12 +13,15 @@ Description: style for component
   }
 
   .navbar-container {
-    padding: 5px;
+
+    background-color: rgb(60, 78, 94);
+    color:whitesmoke;
   }
 
   .navbar-link {
     font-size: 24px;
     font-weight: lighter;
+
   }
 
   .main-content {
@@ -40,8 +43,17 @@ Description: style for component
 
   .bu-link {
     text-decoration: none;
+    color:whitesmoke;
   }
 
   .bu-link:hover {
     text-decoration: underline;
+  }
+
+  .hello-user {
+    font-weight: lighter;
+    padding-left: 40px;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
   }

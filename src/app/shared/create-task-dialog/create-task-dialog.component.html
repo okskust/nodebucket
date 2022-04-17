@@ -1,0 +1,55 @@
+<!--
+============================================
+Title: create-task-dialog.component.html
+Author: Oksana Kustova
+Date: 02/13/2022
+Description: HTML template for component.
+===========================================
+-->
+
+<h2 mat-dialog-title>Add new task</h2>
+
+<mat-dialog-content [formGroup]="taskForm">
+  <div>
+    <mat-form-field style="width: 40em">
+      <input
+        matInput
+        required
+        type="text"
+        placeholder="Enter a task name..."
+        formControlName="header"
+
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field style="width: 40em">
+      <input
+        matInput
+        type="text"
+        placeholder="Enter a task content..."
+        formControlName="body"
+
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field style="width: 40em">
+      <input
+        matInput
+        type="text"
+        placeholder="Enter deadline (yyyy-mm-dd)..."
+        formControlName="dateOfDeadline"
+
+
+      />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [disabled]="!taskForm.valid" (click)="createTask()">
+    Create task
+  </button>
+</mat-dialog-actions>

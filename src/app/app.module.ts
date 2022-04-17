@@ -25,7 +25,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
+import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import { SignInService } from 'src/app/shared/services/sign-in.service';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HomeComponent,
     BaseLayoutComponent,
     AuthLayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignInComponent,
+    AboutComponent,
+    ContactComponent,
+    TasksComponent,
+    CreateTaskDialogComponent,
+
+
 
   ],
   imports: [
@@ -52,8 +68,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    DragDropModule,
+
   ],
-  providers: [],
+  providers: [SignInService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

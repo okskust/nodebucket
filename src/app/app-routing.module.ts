@@ -5,17 +5,18 @@
  * Description: Routing for app.
  */
 
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SignInGuard } from './sing-in.guard';
-
-
-
+import { SignInGuard } from './shared/sign-in.guard';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 const routes: Routes = [
   {
     path: '',
@@ -25,40 +26,51 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
       },
-    ],
-    canActivate: [SignInGuard],
-  },
-  {
-    path: 'session',
-    component: AuthLayoutComponent,
-    children: [
+
       {
-        path: 'not-found',
-        component: NotFoundComponent,
+        path: 'about',
+        component: AboutComponent,
       },
       {
-        path: 'sign-in',
+        path: 'contact',
+        component: ContactComponent,
+      },
+      {
+        path: 'tasks',
+        component: TasksComponent,
+        canActivate: [SignInGuard],
+      },
+      {
+        path: 'session',
         component: AuthLayoutComponent,
+        children: [
+          {
+            path: 'not-found',
+            component: NotFoundComponent,
+          },
+          {
+            path: 'sign-in',
+            component: SignInComponent,
+
+          },
+        ],
+      },
+      {
+        path: '**',
+        redirectTo: 'session/not-found',
       },
     ],
-  },
-  {
-    path: '**',
-    redirectTo: 'session/not-found',
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      enableTracing: false,
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-
-
-
-
-
-
-
-

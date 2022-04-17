@@ -1,0 +1,139 @@
+<!--
+============================================
+Title: tasks.component.html
+Author: Oksana Kustova
+Date: 3/27/2022
+Description: HTML template for component.
+===========================================
+-->
+
+<div fxLayout="column wrap" class="main-container">
+  <div fxFlex class="main-header">
+    <div fxLayout="row">
+      <h1>{{ name }}'s Tasks</h1>
+    </div>
+  </div>
+
+  <div fxFlex class="create-button">
+    <div fxLayout="row">
+      <button mat-flat-button (click)="openCreateTaskDialog()">
+        <mat-icon color="whitesmoke"> note_add </mat-icon> Create New Task
+      </button>
+    </div>
+  </div>
+
+  <div fxFlex class="cards">
+    <div fxLayout="row" fxLayoutGap="15px">
+      <div fxFlex>
+        <mat-card>
+          <mat-card-title>TODO</mat-card-title>
+          <mat-card-content>
+            <div
+              class="tasks-list"
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todo"
+              [cdkDropListConnectedTo]="[doneList]"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div *ngFor="let item of todo" cdkDrag>
+
+                  <mat-card class="mat-elevation-z0">
+                    <mat-card-content class="item-card">
+                      <div fxLayout="column">
+                        <div fxFlex class="card-header">
+                          {{ item.header }}
+                        </div>
+                        <div *ngIf="item.body" fxFlex>
+                          {{ item.body }}
+                        </div>
+                        <div fxFlex>
+                          created:
+                          {{ item.dateOfCreation | date: "shortDate" }}
+                        </div>
+                        <div *ngIf="item.dateOfDeadline" fxFlex>
+                          deadline:
+                          {{ item.dateOfDeadline | date: "shortDate" }}
+                        </div>
+                        <div *ngIf="item.dateOfCompletion" fxFlex>
+                          completed:
+                          {{ item.dateOfCompletion | date: "shortDate" }}
+                        </div>
+
+                        <div fxFlex fxLayoutAlign="end">
+                          <button
+                            mat-icon-button
+                            (click)="deleteTask(item._id)"
+                          >
+                            <mat-icon color="accent">delete</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="15px">
+          <div fxFlex>
+            <mat-card>
+              <mat-card-title>DONE</mat-card-title>
+              <mat-card-content>
+                <div
+                  class="tasks-list"
+                  cdkDropList
+                  #doneList="cdkDropList"
+                  [cdkDropListData]="done"
+                  [cdkDropListConnectedTo]="[todoList]"
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div *ngFor="let item of done" cdkDrag>
+
+                      <mat-card class="mat-elevation-z0">
+                        <mat-card-content class="item-card">
+                          <div fxLayout="column">
+                            <div fxFlex class="card-header">
+                              {{ item.header }}
+                            </div>
+                            <div *ngIf="item.body" fxFlex>
+                              {{ item.body }}
+                            </div>
+                            <div fxFlex>
+                              created:
+                              {{ item.dateOfCreation | date: "shortDate" }}
+                            </div>
+                            <div *ngIf="item.dateOfDeadline" fxFlex>
+                              deadline:
+                              {{ item.dateOfDeadline | date: "shortDate" }}
+                            </div>
+                            <div *ngIf="item.dateOfCompletion" fxFlex>
+                              completed:
+                              {{ item.dateOfCompletion | date: "shortDate" }}
+                            </div>
+                            <div fxFlex fxLayoutAlign="end">
+                              <button
+                                mat-icon-button
+                                (click)="deleteTask(item._id)"
+                              >
+                                <mat-icon color="accent">delete</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

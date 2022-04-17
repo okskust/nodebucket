@@ -6,17 +6,33 @@ Date: 3/27/2022
 Description: style for component
 ===========================================
 */
+.all-description {
+  width: 80%;
+  padding-right: 2em;
+line-height: 3em;
+}
 
-.main-welcome {
-    margin-top: 30px;
+  .description {
+    list-style-type: square;
+    font-size: 2em;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    margin-bottom: 2em;
+
   }
 
-  .title {
-    text-align: center;
-    font-weight: lighter;
+  .about {
+    padding-top: 5em;
+
   }
 
-  .subtitle {
-    text-align: center;
-    font-size: 14px;
+
+  .header {
+    padding-top: 4em;
+    padding-left: 2em;
+    font-size: 4em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(60, 78, 94);
   }
+
+
